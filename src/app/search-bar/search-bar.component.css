@@ -1,0 +1,14 @@
+.jumbotron {
+    height: 11em;
+    padding-top: 1px;
+}
+
+.search {
+    width: 30em;
+    font-size: medium;
+}
+
+.search-button {
+   
+    font-size: large;
+}

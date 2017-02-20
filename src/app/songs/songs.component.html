@@ -1,0 +1,11 @@
+
+<div *ngIf="selectedAlbum">
+<p>
+  List of songs for {{selectedAlbum.name}}
+</p>
+<ul class="albums">
+      <li *ngFor="let album of albums" [class.selected]="album === selectedAlbum" (click)="onSelect(album)">
+        <span class="badge">{{album.id}}</span> {{album.name}}
+      </li>
+    </ul>
+</div>
