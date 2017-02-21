@@ -23,12 +23,13 @@ export class SpotifyService {
 
    getArtistAlbums(artist: string): Promise<any[]> {
     let url = `https://api.spotify.com/v1/search?q=${artist}&type=album`;  // URL to web api
-
+    
     return this.http.get(url)
       .toPromise()
       .then(response => response.json().albums.items as any[])
       .catch(this.handleError);
-  }
+   } 
+  
 
   getAlbumTracks(albumId: string): Promise<any[]> {
     let url = `https://api.spotify.com/v1/albums/${albumId}`;  // URL to web api
