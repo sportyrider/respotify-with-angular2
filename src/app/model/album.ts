@@ -1,4 +1,4 @@
 export class Album {
-  id: number;
+  id: string;
   name: string;
 }
