@@ -1,8 +1,6 @@
 import { Album} from '../model/album';
-import { SAlbum } from '../model/salbum';
-import { ALBUMS } from '../model/mock-albums';
-import { Injectable } from '@angular/core';
 
+import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -10,34 +8,38 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SpotifyService {
 
-  private heroesUrl = 'https://api.spotify.com/v1/search?q=sia&type=album';  // URL to web api
-
+  
   constructor(private http: Http) { }
 
-  getAlbums(): Promise<Album[]> {
-    return Promise.resolve(ALBUMS);
-  }
+//  getAlbums(): Promise<Album[]> {
+ //   return Promise.resolve(ALBUMS);
+//  }
 
-  getAlbum(id: number): Promise<Album> {
-    return this.getAlbums()
-      .then(albums => albums.find(album => album.id === id));
+//  getAlbum(id: number): Promise<Album> {
+ //   return this.getAlbums()
+ //     .then(albums => albums.find(album => album.id === id));
+ // }
 
-  }
 
-  getAlbumsApi(): Promise<SAlbum[]> {
-    return this.http.get(this.heroesUrl)
+   getArtistAlbums(artist: string): Promise<any[]> {
+    let url = `https://api.spotify.com/v1/search?q=${artist}&type=album`;  // URL to web api
+
+    return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as SAlbum[])
+      .then(response => response.json().albums.items as any[])
       .catch(this.handleError);
   }
 
-    getAlbumsApiString(): Promise<String> {
-      console.log('Making http get...');
-    return this.http.get(this.heroesUrl)
+  getAlbumTracks(albumId: string): Promise<any[]> {
+    let url = `https://api.spotify.com/v1/albums/${albumId}`;  // URL to web api
+
+    return this.http.get(url)
       .toPromise()
-      .then(response => response.json().albums.items[0].name)
+      .then(response => response.json().tracks.items as any[])
       .catch(this.handleError);
   }
+
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
