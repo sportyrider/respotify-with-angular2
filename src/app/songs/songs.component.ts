@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, OnDestroy, Input } from '@angular/core';
 import { SpotifyService } from '../service/spotify.service';
 import { Track } from '../model/track';
 import { Album } from '../model/album';
@@ -12,22 +12,19 @@ import { Album } from '../model/album';
   styleUrls: ['./songs.component.css']
 })
 export class SongsComponent implements OnChanges {
-  
-  tracks: any[] = [];
-  
+    
   @Input()
   selectedAlbum: Album;
   
+  audio: any;
+  tracks: any[] = [];
   selectedTrack: Track;
 
   constructor(private spotifyService: SpotifyService, ) { }
 
   ngOnChanges() {
 
-    console.log('Find tracks - onChange');
-
    if (this.selectedAlbum) {
-     console.log('Find tracks for '+this.selectedAlbum.id);
      this.spotifyService.getAlbumTracks(this.selectedAlbum.id).then(track => this.tracks = track);
 
     // for (var item of this.tracks) {
@@ -40,15 +37,22 @@ export class SongsComponent implements OnChanges {
 
   onSelect(track: Track): void {
     this.selectedTrack = track;
-    console.log('Selected track id: '+track.id+' -- '+track.preview_url);
-
-    let audio = new Audio();
-    audio.src = track.preview_url;
-    audio.load();
-    audio.play();
-
- //   const newAudioObject = new Audio(track.preview_url);
- //   newAudioObject.play();
+  
+    if (this.audio) {
+      this.audio.pause(); 
+    } else {
+      this.audio = new Audio();
+    }
+   
+    this.audio.src = track.preview_url;
+    this.audio.load();
+    this.audio.play();
 
   }
+
+  ngOnDestroy()  {
+    this.audio = null;
+    this.tracks = null;
+  }
+  
 }
