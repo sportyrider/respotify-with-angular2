@@ -3,7 +3,8 @@
   <div class="col-xs-12 col-sm-6 col-lg-4">
     <ul class="albums">
       <li *ngFor="let album of albums" [class.selected]="album === selectedAlbum" (click)="onSelect(album)">
-        <span class="badge">{{album.id}}</span> {{album.name}}
+        <span class="badge">{{album.album_type}}</span> {{album.name.substr(0,25)}}
+        <img src="{{album.images[1].url}}">
       </li>
     </ul>
   </div>
