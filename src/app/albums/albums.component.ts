@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SpotifyService } from '../service/spotify.service';
 import { Album } from '../model/album';
-import { SAlbum } from '../model/salbum';
+
 
 @Component({
   moduleId: module.id,
@@ -39,8 +39,6 @@ export class AlbumsComponent implements OnInit {
 
   onSelect(album: Album): void {
     this.selectedAlbum = album;
-    console.log(album.id);
-
   }
 
 }
