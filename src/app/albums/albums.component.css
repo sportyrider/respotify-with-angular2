@@ -1,5 +1,5 @@
 .selected {
-  background-color: #EFD8DC !important;
+  background-color: #1E90FF !important;
   color: white;
 }
 .albums {
@@ -16,13 +16,13 @@
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 23em;
+  height: 22em;
   border-radius: 4px;
 }
 .albums li:hover {
   color: #607D8B;
   background-color: #DDD;
-  left: .1em;
+  left: .4em;
 }
 .albums li.selected:hover {
   background-color: #BBD8DC !important;
@@ -45,6 +45,10 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+.albums img { 
+  width: 20em;
+  height: 20em;
 }
 button {
   font-family: Arial;

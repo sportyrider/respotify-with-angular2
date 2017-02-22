@@ -4,7 +4,6 @@ import { Track } from '../model/track';
 import { Album } from '../model/album';
 
 
-
 @Component({
   moduleId: module.id,
   selector: 'app-songs',
@@ -12,10 +11,10 @@ import { Album } from '../model/album';
   styleUrls: ['./songs.component.css']
 })
 export class SongsComponent implements OnChanges {
-    
+
   @Input()
   selectedAlbum: Album;
-  
+
   audio: any;
   tracks: any[] = [];
   selectedTrack: Track;
@@ -24,35 +23,35 @@ export class SongsComponent implements OnChanges {
 
   ngOnChanges() {
 
-   if (this.selectedAlbum) {
-     this.spotifyService.getAlbumTracks(this.selectedAlbum.id).then(track => this.tracks = track);
+    if (this.selectedAlbum) {
+      this.spotifyService.getAlbumTracks(this.selectedAlbum.id).then(track => this.tracks = track);
 
-    // for (var item of this.tracks) {
+      // for (var item of this.tracks) {
       //    console.log(item.name +' | '+ item.id ); 
       // } 
-   }
-  
+    }
+
 
   }
 
   onSelect(track: Track): void {
     this.selectedTrack = track;
-  
+
     if (this.audio) {
-      this.audio.pause(); 
+      this.audio.pause();
     } else {
       this.audio = new Audio();
     }
-   
+
     this.audio.src = track.preview_url;
     this.audio.load();
     this.audio.play();
 
   }
 
-  ngOnDestroy()  {
+  ngOnDestroy() {
     this.audio = null;
     this.tracks = null;
   }
-  
+
 }

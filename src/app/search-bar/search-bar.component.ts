@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-   moduleId: module.id,
+  moduleId: module.id,
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
@@ -12,14 +12,15 @@ export class SearchBarComponent implements OnInit {
 
   artist: string;
 
-
-  constructor(  private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   search(): void {
-    this.router.navigate(['/detail', this.artist]);
+    if (this.artist && this.artist.length > 0) {
+      this.router.navigate(['/detail', this.artist]);
+    }
   }
 
 }

@@ -29,9 +29,9 @@ export class AlbumsComponent implements OnInit {
         .switchMap((params: Params) => this.spotifyService.getArtistAlbums(params['artist']))
         .subscribe(album => this.albums = album);
 
-  //     for (var item of this.albums) {
-  //        console.log(item.album_type +' | '+ item.name + ' | '+ item.images[1].url); 
-  //     }   
+   //   for (var item of this.albums) {
+   //     console.log(item.album_type + ' | ' + item.name + ' | ' + item.images[1].url + ' | ');
+   //   }
 
     });
 
