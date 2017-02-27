@@ -1,3 +1,15 @@
+.albumlist { 
+    width: 370;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    text-align: left;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: solid;
+    border-color: lightGray;
+    border-width: 1px;
+    border-radius: 18px;
+}
 .selected {
   background-color: #1E90FF !important;
   color: white;
@@ -62,6 +74,7 @@ button {
 button:hover {
   background-color: #cfd8dc;
 }
+
 
 
 
