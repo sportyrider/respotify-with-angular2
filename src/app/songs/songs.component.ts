@@ -26,9 +26,9 @@ export class SongsComponent implements OnChanges {
     if (this.selectedAlbum) {
       this.spotifyService.getAlbumTracks(this.selectedAlbum.id).then(track => this.tracks = track);
 
-      // for (var item of this.tracks) {
-      //    console.log(item.name +' | '+ item.id ); 
-      // } 
+   //   for (var item of this.tracks) {
+   //       console.log(item.name +' | '+ item.id + '|' + item.artists[0].name ); 
+   //    } 
     }
 
 
